@@ -1,9 +1,11 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
 var widthAndHeight = 16;
+var copyright = "<!-- TwitchEdit COPYRIGHT © 2019 KIERAN SHERMAN | https://www.twitch.tv/ShermanZero -->";
 
 var clipsRoot, clipHeader, clipLink, insertionPoint;
-var clipHTML = "" +
+var clipHTML = ""+
+copyright+
 "<div class='twitchedit'>"+
   "<div class='twitchedit_tooltip'>"+
     "<span class='twitchedit_tooltip-text'>"+
@@ -17,10 +19,13 @@ var clipHTML = "" +
       "</div>"+
     "</div>"+
   "</div>"+
-"</div>";
+"</div>"+
+copyright;
 
+//logs that the extension registered the Clips Manager has been loaded
 console.log("{TwitchEdit} Twitch clips manager page has been loaded!");
 
+//mutation observer watching for added nodes
 const observer = new MutationObserver(function(mutations) {
   mutations.forEach(function (mutation) {
     //if nodes were added, start iterating through them
@@ -29,12 +34,11 @@ const observer = new MutationObserver(function(mutations) {
         //initialize the node variable
         var node = mutation.addedNodes[i];
 
-        //if the node is for some reason null
-        if(node == null) {
-          continue;
-        } else
-        //if the child node happens to be a string
-        if(node.hasChildNodes() && node.firstChild.nodeType == 3) {
+        //log that the MutationObserver has noticed the added node (DEV)
+        //console.log('{TwitchEdit-DEV} DOM added node:', node);
+
+        //if the node is null or does not match our parameters
+        if(node == null || node.nodeName != "DIV" || node.nodeType != 1 ) {
           continue;
         } else
         //if the node has my class, ignore it
@@ -76,7 +80,7 @@ const observer = new MutationObserver(function(mutations) {
               console.log('{TwitchEdit} found full link:', clipLink);
 
               //display how many searches we do not need to do anymore since we have found the link
-              console.log("{TwitchEdit} discarded " + (clipLinkContainer.length - (j+1)) + " searches");
+              console.log("{TwitchEdit} discarded " + (clipLinkContainer.length - (j+1)) + " search(es)");
 
               //cut the end of the link starting at '?'
               clipLink = clipLink.substring(0, clipLink.indexOf('?'))+"/edit";
