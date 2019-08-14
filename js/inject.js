@@ -63,7 +63,6 @@ const observer = new MutationObserver(function(mutations) {
               //cut the end of the link starting at '?'
               clipLink = clipLink.substring(0, clipLink.indexOf('?'))+"/edit";
               console.log("{TwitchEdit} modified clip link:", clipLink);
-              break;
             }
           }
 
