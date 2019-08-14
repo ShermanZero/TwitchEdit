@@ -5,10 +5,10 @@
 */
 
 .twitchedit {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 /* Tooltip container */
@@ -20,7 +20,7 @@
 /* Tooltip text */
 .twitchedit_tooltip .twitchedit_tooltiptext {
   visibility: hidden;
-  width: 75px;
+  width: 34px;
   background-color: white;
   color: black;
   text-align: center;
@@ -32,7 +32,7 @@
   z-index: 1;
   bottom: 120%;
   left: 50%;
-  margin-left: -38px;
+  margin-left: -18px;
 
   /* Fade in tooltip */
   opacity: 0;
@@ -55,4 +55,8 @@
 .twitchedit_tooltip:hover .twitchedit_tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+.twitchedit:hover {
+
 }

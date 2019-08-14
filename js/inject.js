@@ -1,7 +1,12 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
+var widthAndHeight = 16;
+
 var clipsRoot, clipHeader, clipLink, insertionPoint;
-var clipHTML = "<div class='twitchedit twitchedit_tooltip tw-align-items-center tw-full-width tw-icon tw-icon--fill tw-inline-flex'> <span class='twitchedit_tooltiptext'>TwitchEdit</span> <a href='<link>' target='_blank'> <img src='https://i.ibb.co/Wf84T3K/icon-128-white.png' alt='edit' width='20' height='20'> </a> </div>"
+var clipHTML = "<div class='twitchedit twitchedit_tooltip tw-align-items-center tw-full-width tw-icon tw-icon--fill tw-inline-flex'>"+
+" <span class='twitchedit_tooltiptext'>Edit</span>"+
+" <a href='<link>' target='_blank'> <img src='https://i.imgur.com/o8SHTcI.png' alt='edit' width='<width>' height='<height>'>"+
+" </a> </div>"
 
 console.log("{TwitchEdit} Twitch clips manager page has been loaded!");
 
@@ -84,6 +89,10 @@ function modifyClip() {
 
   //replace <link> with the actual link
   clipHTML = clipHTML.replace('<link>', clipLink);
+
+  //set the width and height of the icon
+  clipHTML = clipHTML.replace('<width>', widthAndHeight);
+  clipHTML = clipHTML.replace('<height>', widthAndHeight);
 
   //inject the HTML after the insertion point
   console.log("{TwitchEdit} injecting: ", clipHTML);
