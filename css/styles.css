@@ -1,0 +1,59 @@
+/*
+.clmgr-table__row.tw-align-items-center.tw-flex.tw-overflow-hidden {
+  background: #354463;
+}
+*/
+
+.twitchedit {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* Tooltip container */
+.twitchedit_tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.twitchedit_tooltip .twitchedit_tooltiptext {
+  visibility: hidden;
+  width: 75px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 1px 0;
+  border-radius: 4px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 120%;
+  left: 50%;
+  margin-left: -38px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.twitchedit_tooltip .twitchedit_tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.twitchedit_tooltip:hover .twitchedit_tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
