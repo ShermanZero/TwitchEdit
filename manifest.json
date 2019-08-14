@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "TwitchEdit",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Add an edit button to the Twitch clips page  |  Copyright © 2019 Kieran (ShermanZero) Sherman",
 
   "content_scripts": [{
