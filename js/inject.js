@@ -20,15 +20,14 @@ const observer = new MutationObserver(function(mutations) {
 
         //if the node is for some reason null
         if(node == null) {
-          continue
-        } else
-        //if the node has my class, ignore it
-        if(node.hasAttribute('class') && node.getAttribute('class') == 'twitchedit') {
           continue;
-        //if the node does not have the data-target attribute set to clips-manager-table-row, ignore it
         } else
         //if the child node happens to be a string
         if(node.hasChildNodes() && node.firstChild.nodeType == 3) {
+          continue;
+        } else
+        //if the node has my class, ignore it
+        if(node.hasAttribute('class') && node.getAttribute('class') == 'twitchedit') {
           continue;
         } else
         //if all other tests pass, but if the node is not exactly what we are looking for, continue
@@ -37,7 +36,7 @@ const observer = new MutationObserver(function(mutations) {
         }
 
         //log that the MutationObserver has noticed the added node
-        console.log('{TwitchEdit} added node:', node);
+        console.log('{TwitchEdit} DOM added node:', node);
 
         //if the clips container has been loaded in
         if(node.hasChildNodes() && node.firstChild.matches('.clmgr-table__row-expanded.tw-block.tw-c-background-base.tw-elevation-3.tw-mg-b-3.tw-relative')) {
@@ -65,9 +64,15 @@ const observer = new MutationObserver(function(mutations) {
               clipLink = child.children[0].getAttribute('href');
               console.log('{TwitchEdit} found full link:', clipLink);
 
+              //display how many searches we do not need to do anymore since we have found the link
+              console.log("{TwitchEdit} discarded " + (clipLinkContainer.length - (j+1)) + " searches");
+
               //cut the end of the link starting at '?'
               clipLink = clipLink.substring(0, clipLink.indexOf('?'))+"/edit";
               console.log("{TwitchEdit} modified clip link:", clipLink);
+
+              //found the link, so break out of the loop
+              break;
             }
           }
 
@@ -88,18 +93,23 @@ function modifyClip() {
   console.log("{TwitchEdit} beginning HTML injection");
 
   //replace <link> with the actual link
+  console.log("{TwitchEdit} --setting link");
   clipHTML = clipHTML.replace('<link>', clipLink);
 
   //set the width and height of the icon
+  console.log("{TwitchEdit} --setting icon size");
   clipHTML = clipHTML.replace('<width>', widthAndHeight);
   clipHTML = clipHTML.replace('<height>', widthAndHeight);
 
   //inject the HTML after the insertion point
-  console.log("{TwitchEdit} injecting: ", clipHTML);
+  console.log("{TwitchEdit} --injecting HTML");
   insertionPoint.insertAdjacentHTML('afterend', clipHTML);
 
-  //all done :)
-  console.log("{TwitchEdit} HTML injection finished :) you can now click on the fancy icon to directly edit the clip!");
+  //display the injection in the console
+  console.log("{TwitchEdit} injected: ", root.getElementsByClassName('twitchedit')[0]);
+
+  //successfully injected!
+  console.log("{TwitchEdit} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!");
 }
 
 //root node to watch changes in, make sure to pay attention to the childlist and subtree
