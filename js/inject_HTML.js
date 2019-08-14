@@ -4,16 +4,20 @@ var widthAndHeight = 16;
 
 var clipsRoot, clipHeader, clipLink, insertionPoint;
 var clipHTML = "" +
-"<div class='twitchedit twitchedit_tooltip'>"+
-  "<span class='twitchedit_tooltip-text'>"+
-    "Edit"+
-  "</span>"+
-  "<div class='twitchedit_highlight-box'>"+
-    "<a href='<link>' target='_blank'>"+
-      "<img src='https://i.imgur.com/o8SHTcI.png' width='<width>' height='<height>'>"+
-    "</a>"+
-  "</div>"
-"</div>"
+"<div class='twitchedit'>"+
+  "<div class='twitchedit_tooltip'>"+
+    "<span class='twitchedit_tooltip-text'>"+
+      "Edit"+
+    "</span>"+
+    "<div class='twitchedit_highlight-box'>"+
+      "<div class='twitchedit_centered-link'>"+
+        "<a href='<link>' target='_blank'>"+
+          "<img src='https://i.imgur.com/o8SHTcI.png' width='<width>' height='<height>'>"+
+        "</a>"+
+      "</div>"+
+    "</div>"+
+  "</div>"+
+"</div>";
 
 console.log("{TwitchEdit} Twitch clips manager page has been loaded!");
 

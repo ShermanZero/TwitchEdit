@@ -1,18 +1,22 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
-/* The standard class */
 .twitchedit {
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 7px;
-  padding-bottom: 7px;
+  margin-left: 6px;
 }
 
 /* The box which gets highlighted on hover */
 .twitchedit_highlight-box {
-  width: 25px;
-  height: 25px;
-  margin: auto;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: rgba(56, 56, 56, 0);
+}
+
+.twitchedit_highlight-box:hover {
+  background-color: rgba(56, 56, 56, 0.45);
 }
 
 /* Tooltip container */
@@ -34,23 +38,21 @@
   /* Position the tooltip text */
   position: absolute;
   z-index: 1;
-  bottom: 120%;
+  bottom: 118%;
   left: 50%;
   margin-left: -18px;
 
-  /* Fade in tooltip */
   opacity: 0;
-  transition: opacity 0.3s;
 }
 
 /* Tooltip arrow */
 .twitchedit_tooltip .twitchedit_tooltip-text::after {
   content: "";
   position: absolute;
-  top: 100%;
+  top: 70%;
   left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
+  margin-left: -10px;
+  border-width: 10px;
   border-style: solid;
   border-color: white transparent transparent transparent;
 }
@@ -59,8 +61,4 @@
 .twitchedit_tooltip:hover .twitchedit_tooltip-text {
   visibility: visible;
   opacity: 1;
-}
-
-.twitchedit:hover {
-
 }
