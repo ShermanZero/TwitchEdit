@@ -1,7 +1,8 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
 .twitchedit {
-  margin-left: 6px;
+  margin-left: 5px;
+  margin-top: 1px;
 }
 
 /* The box which gets highlighted on hover */
