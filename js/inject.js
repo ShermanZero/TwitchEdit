@@ -31,7 +31,7 @@ const observer = new MutationObserver(function(mutations) {
           continue;
         }
 
-        //log that we have added the node
+        //log that the MutationObserver has noticed the added node
         console.log('{TwitchEdit} added node:', node);
 
         //if the clips container has been loaded in
