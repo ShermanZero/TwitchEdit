@@ -26,7 +26,7 @@ const observer = new MutationObserver(function(mutations) {
         if(node.hasChildNodes() && node.firstChild.nodeType == 3) {
           continue;
         } else
-        //if the node is exactly what we are looking for
+        //if all other tests pass, but if the node is not exactly what we are looking for, continue
         if(!(node.childNodes.length > 0 && node.firstChild.hasAttribute('data-target') && node.firstChild.getAttribute('data-target') == 'clips-manager-table-row')) {
           continue;
         }
