@@ -9,7 +9,7 @@ After getting tired of spending the extra 10 seconds to navigate to my clip page
 
 [Get it on the Chrome Web Store](https://chrome.google.com/webstore/detail/dechjnpdlchkchhgjnakdifhkdlhloob/publish-accepted?authuser=0&hl=en)
 
-If you appreciate what I've done, please feel free to head over to my Twitch channel: [ShermanZero](https://twitch.tv/ShermanZero) and drop a follow to show your support and appreciation!
+If you appreciate what I've done, please feel free to head over to my [Twitch channel](https://twitch.tv/ShermanZero) and drop a follow to show your support and appreciation!  I play a lot of Overwatch, and promote PMA!
 
 # Changelog
 
