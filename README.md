@@ -21,3 +21,5 @@ If you appreciate what I've done, please feel free to head over to my [Twitch ch
 
 **v1.0 (08/13/19)**
 - *Initial commit*
+
+*This is technically open-source since I have made the code publicly available here to you all.  I could have simply created a repository with just a README, but decided to let you guys see what I've done.  You are welcome to clone, fork, download, or whatever this project for yourself, all I ask is that you leave my credits in the files wherever they appear.*
