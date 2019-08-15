@@ -16,7 +16,8 @@
   ],
 
   "browser_action": {
-    "default_title": "TwitchEdit"
+    "default_title": "TwitchEdit",
+    "default_popup": "html/popup.html"
   },
 
   "icons": {

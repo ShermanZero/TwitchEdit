@@ -1,7 +1,7 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
 var widthAndHeight = 16;
-var copyright = "<!-- TwitchEdit COPYRIGHT © 2019 KIERAN SHERMAN | https://www.twitch.tv/ShermanZero -->";
+var copyright = "<!-- TwitchEdit COPYRIGHT © 2019 KIERAN SHERMAN | twitch.tv/ShermanZero -->";
 
 var clipsRoot, clipHeader, clipLink, insertionPoint;
 var clipHTML = ""+
