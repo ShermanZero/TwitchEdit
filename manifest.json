@@ -8,7 +8,7 @@
 
   "content_scripts": [{
     "js": ["js/inject_CSS.js", "js/inject_HTML.js"],
-    "matches": ["https://www.twitch.tv/shermanzero/manager/clips/*"]
+    "matches": ["https://*.twitch.tv/*/manager/clips*"]
   }],
 
   "permissions": [
