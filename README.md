@@ -1,5 +1,5 @@
 # TwitchEdit
-### v1.1
+### v1.2
 
 ![TwitchEdit](resources/popup.jpg)
 
@@ -12,6 +12,9 @@ After getting tired of spending the extra 10 seconds to navigate to my clip page
 If you appreciate what I've done, please feel free to head over to my [Twitch channel](https://twitch.tv/ShermanZero) and drop a follow to show your support and appreciation!  I play a lot of Overwatch, and promote PMA!
 
 # Changelog
+
+**v1.2 (08/15/19)**
+- Fixed bug which prevented the extension from working on some channels
 
 **v1.1 (08/14/19)**
 - Overhaul to the UI, made it look like it's part of Twitch
