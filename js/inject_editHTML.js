@@ -1,5 +1,7 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
+console.log('{TwitchEdit-Edit} Content script loaded and started');
+
 var iconSize = 16;
 var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/shermanzero -->";
 
@@ -92,6 +94,7 @@ function modifyClip() {
 
   //replace <link> with the actual link
   console.log('{TwitchEdit} --setting link');
+  //editButtonHTML.contents = editButtonHTML.contents.replace(linkReplace, "https://clips.twitch.tv/create/test") (THIS IS A DEV TEST)
   editButtonHTML.contents = editButtonHTML.contents.replace(linkReplace, clipLink);
 
   //set the width and height of the icon

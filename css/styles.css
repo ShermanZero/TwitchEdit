@@ -28,17 +28,19 @@
 }
 
 .twitchedit_return button {
-  width: 255px;
+  width: 285px;
   height: 35px;
   border-radius: 5px;
-  background-color: rgb(80, 43, 146);
+  background-color: rgb(95, 68, 158);
   color: white;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 15px;
+  text-align: center;
+  outline: none;
 }
 
 .twitchedit_return:hover button {
-  background-color: rgb(105, 67, 176);
+  background-color: rgb(120, 94, 184);
 }
 
 /* Tooltip container */

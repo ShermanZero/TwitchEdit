@@ -1,5 +1,7 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
+console.log('{TwitchEdit-Return} Content script loaded and started');
+
 var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/shermanzero -->";
 var injectionPoint, returnButtonHTML = {contents: ""};
 
@@ -13,32 +15,69 @@ var observer = new MutationObserver(function(mutations) {
         var node = mutation.addedNodes[i];
 
         //log that the MutationObserver has noticed the added node (DEV)
-        console.log('{TwitchEdit-DEV-clips} DOM added node:', node);
+        console.log('{TwitchEdit-DEV} DOM added node:', node);
+
+        //if the node is null or does not match our parameters
+        if(node == null || node.nodeName != "DIV" || node.nodeType != 1) {
+          continue;
+        } else
+        //if the node has my class, ignore it
+        if(node.hasAttribute('class') && node.getAttribute('class') == 'twitchedit') {
+          continue;
+        } else
+        //if the element is exactly what we're looking for
+        if(node.childElementCount == 2 && node.children[1].getAttribute('class') == 'tw-align-items-center tw-flex tw-justify-content-between tw-pd-t-1') {
+          console.log('{TwitchEdit} DOM loaded injection point', node);
+          modifyReturn();
+        }
       }
     }
   })
 });
 
-//find the injection point for the HTML
-injectionPoint = document.getElementsByClassName("tw-align-items-center tw-flex tw-justify-content-between tw-pd-t-1")[0].children[1];
-
-//starting the injection
-console.log('{TwitchEdit-clips} beginning HTML injection');
-
-//insert the submit button before the other submit button
-insertionPoint.insertBefore('beforestart', returnButtonHTML.contents);
-
-//successfully injected!
-console.log('{TwitchEdit-clips} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');
-
 //adds a return button to the editting page
 function modifyReturn() {
+  //find the injection point for the HTML
+  var rootInjectionPoint = document.getElementsByClassName("tw-align-items-center tw-flex tw-justify-content-between tw-pd-t-1")[0];
 
+  //log the root injection point
+  console.log('{TwitchEdit} found root injection point', rootInjectionPoint);
+
+  //remove the pesky "Clips with titles..." message
+  var message = rootInjectionPoint.children[0];
+  console.log('{TwitchEdit} removing pesky message', message)
+  message.remove();
+
+  //set the final injection point
+  var injectionPoint = rootInjectionPoint.children[0];
+  console.log('{TwitchEdit} found injection point', injectionPoint);
+
+  //stores the submit button
+  var publishButton = injectionPoint.getElementsByClassName('tw-align-items-center tw-align-middle tw-border-bottom-left-radius-large tw-border-bottom-right-radius-large tw-border-top-left-radius-large tw-border-top-right-radius-large tw-core-button tw-core-button--border tw-core-button--large tw-core-button--padded tw-core-button--primary tw-inline-flex tw-interactive tw-justify-content-center tw-overflow-hidden tw-relative')[0];
+
+  //adds an ID to the button so it can be referenced by the injection
+  publishButton.setAttribute('id', 'publish');
+
+  //hide the standard publish button
+  publishButton.style.visibility = 'hidden';
+
+  //log that we found and hid the publish button
+  console.log('{TwitchEdit} found and hid the publish button', publishButton);
+
+  //starting the injection
+  console.log('{TwitchEdit} beginning HTML injection');
+
+  //insert the submit button after the other submit button
+  injectionPoint.insertAdjacentHTML('beforebegin', returnButtonHTML.contents);
+
+  //successfully injected!
+  console.log('{TwitchEdit} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');
 }
 
 //root node to watch changes in, make sure to pay attention to the childlist and subtree
 var returnRoot = document.getElementById('root');
-console.log('{TwitchEdit-clips} found root node, observing for changes', returnRoot);
+console.log('{TwitchEdit} found root node, observing for changes', returnRoot);
+
 observer.observe(returnRoot, {
   childList: true,
   subtree: true
@@ -55,5 +94,3 @@ function loadFile(fileSource, variable) {
 }
 
 loadFile('/html/returnButton.html', returnButtonHTML);
-
-window.onload = modifyReturn();
