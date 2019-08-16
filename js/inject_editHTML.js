@@ -8,9 +8,6 @@ var sizeReplace = "{size}";
 
 var clipHeader, clipLink, insertionPoint, editButtonHTML = {contents: ""};
 
-//logs that the extension registered the Clips Manager has been loaded
-console.log('{TwitchEdit} Twitch clips manager page has been loaded!');
-
 //mutation observer watching for added nodes
 const observer = new MutationObserver(function(mutations) {
   mutations.forEach(function (mutation) {
@@ -91,30 +88,31 @@ const observer = new MutationObserver(function(mutations) {
 
 //modify the clips to display new data
 function modifyClip() {
-  console.log("{TwitchEdit} beginning HTML injection");
+  console.log('{TwitchEdit} beginning HTML injection');
 
   //replace <link> with the actual link
-  console.log("{TwitchEdit} --setting link");
+  console.log('{TwitchEdit} --setting link');
   editButtonHTML.contents = editButtonHTML.contents.replace(linkReplace, clipLink);
 
   //set the width and height of the icon
-  console.log("{TwitchEdit} --setting icon size");
+  console.log('{TwitchEdit} --setting icon size');
   editButtonHTML.contents = editButtonHTML.contents.replace(sizeReplace, iconSize);
   editButtonHTML.contents = editButtonHTML.contents.replace(sizeReplace, iconSize);
 
   //inject the HTML after the insertion point
-  console.log("{TwitchEdit} --injecting HTML");
+  console.log('{TwitchEdit} --injecting HTML');
   insertionPoint.insertAdjacentHTML('afterend', editButtonHTML.contents);
 
   //display the injection in the console
-  console.log("{TwitchEdit} injected: ", root.getElementsByClassName('twitchedit')[0]);
+  console.log('{TwitchEdit} injected: ', root.getElementsByClassName('twitchedit')[0]);
 
   //successfully injected!
-  console.log("{TwitchEdit} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!");
+  console.log('{TwitchEdit} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');
 }
 
 //root node to watch changes in, make sure to pay attention to the childlist and subtree
 const root = document.getElementById('root');
+console.log('{TwitchEdit} found root node, observing for changes', root)
 observer.observe(root, {
   childList: true,
   subtree: true
