@@ -35,6 +35,12 @@ var observer = new MutationObserver(function(mutations) {
           //log what we've done
           console.log('{TwitchEdit} finished publishing clip - closing window');
 
+          //reload the Clips Manager tab after this window is closed
+          window.onunload = reload;
+          function reload() {
+            window.location.reload(true);
+          }
+
           //close the tab
           window.close();
         }
