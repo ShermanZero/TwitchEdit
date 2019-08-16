@@ -1,5 +1,5 @@
 # TwitchEdit
-### v1.3.1
+### v1.4.0
 
 ![TwitchEdit](resources/popup.jpg)
 
@@ -13,7 +13,7 @@ If you appreciate what I've done, please feel free to head over to my [Twitch ch
 
 # Changelog
 
-**v1.3.1 (8/16/19)**
+**v1.4.0 (8/16/19)**
 - Changed the way the HTTP request is made to open a new tab to edit a clip
 - Now, TwitchEdit also edits the clip page and replaces the standard "Submit" button with a "Submit and Return to Clips Manager" button that will automatically close the tab when your clip has finished processing
 - Minor bug fixes
