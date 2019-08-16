@@ -3,7 +3,7 @@
 console.log('{TwitchEdit-Return} Content script loaded and started');
 
 var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/shermanzero -->";
-var injectionPoint, returnButtonHTML = {contents: ""};
+var injectionPoint, submitButtonHTML = {contents: ""};
 
 //mutation observer watching for added nodes
 var observer = new MutationObserver(function(mutations) {
@@ -15,7 +15,7 @@ var observer = new MutationObserver(function(mutations) {
         var node = mutation.addedNodes[i];
 
         //log that the MutationObserver has noticed the added node (DEV)
-        console.log('{TwitchEdit-DEV} DOM added node:', node);
+        //console.log('{TwitchEdit-DEV} DOM added node:', node);
 
         //if the node is null or does not match our parameters
         if(node == null || node.nodeName != "DIV" || node.nodeType != 1) {
@@ -89,29 +89,32 @@ function modifyReturn() {
   console.log('{TwitchEdit} beginning HTML injection');
 
   //insert the submit button after the other submit button
-  injectionPoint.insertAdjacentHTML('beforebegin', (copyright + returnButtonHTML.contents + copyright));
+  injectionPoint.insertAdjacentHTML('beforebegin', submitButtonHTML.contents);
 
   //successfully injected!
   console.log('{TwitchEdit} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');
 }
 
-//root node to watch changes in, make sure to pay attention to the childlist and subtree
+//root node to watch changes in, make sure to pay attention to the childlist and subtrees
 var returnRoot = document.getElementById('root');
 console.log('{TwitchEdit} found root node, observing for changes', returnRoot);
 
+//observe the childList and subtrees
 observer.observe(returnRoot, {
   childList: true,
   subtree: true
 });
 
 //loads a file into a variable under .contents
-function loadFile(fileSource, variable) {
+function loadFile(fileSource, element) {
   var url = chrome.runtime.getURL(fileSource);
   fetch(url).then(function(response) {
     response.text().then(function(text) {
-      variable.contents = (copyright + text + copyright);
+      //set the contents and append copyright to before and after
+      element.contents = (copyright + text + copyright);
     })
   });
 }
 
-loadFile('/html/returnButton.html', returnButtonHTML);
+//load the submitButton.html
+loadFile('/html/submitButton.html', submitButtonHTML);

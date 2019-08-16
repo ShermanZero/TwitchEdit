@@ -113,22 +113,26 @@ function modifyClip() {
   console.log('{TwitchEdit} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');
 }
 
-//root node to watch changes in, make sure to pay attention to the childlist and subtree
+//root node to watch changes in, make sure to pay attention to the childlist and subtrees
 var editRoot = document.getElementById('root');
 console.log('{TwitchEdit} found root node, observing for changes', editRoot)
+
+//observe the childList and subtrees
 observer.observe(editRoot, {
   childList: true,
   subtree: true
 });
 
 //loads a file into a variable under .contents
-function loadFile(fileSource, variable) {
+function loadFile(fileSource, element) {
   var url = chrome.runtime.getURL(fileSource);
   fetch(url).then(function(response) {
     response.text().then(function(text) {
-      variable.contents = (copyright + text + copyright);
+      //set the contents and append copyright to before and after
+      element.contents = (copyright + text + copyright);
     })
   });
 }
 
+//load the editButton.html
 loadFile('/html/editButton.html', editButtonHTML);
