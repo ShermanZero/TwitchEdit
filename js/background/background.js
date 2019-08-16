@@ -15,5 +15,4 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
       file: "/css/publish/publishButtonStyles.css"
     });
   }
-
 });

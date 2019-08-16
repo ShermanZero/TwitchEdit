@@ -15,11 +15,14 @@ function injectStyles(url) {
   document.body.appendChild(stylesElement);
 }
 
-//inject clip styles
-injectStyles(chrome.extension.getURL('css/clip/clipButtonStyles.css'));
-
-//inject edit styles
-injectStyles(chrome.extension.getURL('css/edit/editButtonStyles.css'));
+//inject edit styles if we are on a /manager/clips page
+if(window.location.href.includes('/manager/clips')) {
+  injectStyles(chrome.extension.getURL('css/edit/editButtonStyles.css'));
+} else
+//otherwise, inject clip styles if we are on a twitch.tv/ page
+if(window.location.href.includes('twitch.tv/')) {
+  injectStyles(chrome.extension.getURL('css/clip/clipButtonStyles.css'));
+}
 
 /* ================================================================================== */
 /* NOTE THAT THE PUBLISH BUTTON CSS IS INJECTED PROGRAMATICALLY WIHTHIN BACKGROUND.JS */

@@ -8,7 +8,7 @@ var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/s
 var linkReplace = "{link}";
 var sizeReplace = "{size}";
 
-var clipHeader, clipLink, insertionPoint, clipButtonHTML = {contents: ""};
+var insertionPoint, clipButtonHTML = {contents: ""};
 
 //mutation observer watching for added nodes
 var observer = new MutationObserver(function(mutations) {
@@ -31,7 +31,7 @@ var observer = new MutationObserver(function(mutations) {
           continue;
         } else
         //if all other tests pass, but if the node is not exactly what we are looking for, continue
-        if(!(node.childNodes.length > 0 && node.firstChild.hasAttribute('data-target') && node.firstChild.getAttribute('data-target') == 'clips-manager-table-row')) {
+        if(!(node.getAttribute('id') == 'default-player')) {
           continue;
         }
 
@@ -39,49 +39,19 @@ var observer = new MutationObserver(function(mutations) {
         console.log('{TwitchEdit} DOM added node:', node);
 
         //if the clips container has been loaded in
-        if(node.hasChildNodes() && node.firstChild.matches('.clmgr-table__row-expanded.tw-block.tw-c-background-base.tw-elevation-3.tw-mg-b-3.tw-relative')) {
+        if(node.hasChildNodes()) {
           console.log('{TwitchEdit} ^found match^');
 
-          //gets the header (icons)
-          clipHeader = node.getElementsByClassName('tw-align-items-center tw-border-b tw-c-background-alt tw-flex tw-justify-content-between tw-pd-1')[0];
-          console.log("{TwitchEdit} found header:", clipHeader);
-
-          //gets the link container
-          clipLinkContainer = node.getElementsByClassName('tw-inline-flex tw-tooltip-wrapper');
-          console.log("{TwitchEdit} found link container:", clipLinkContainer);
-
           //marks the insertion point
-          insertionPoint = clipLinkContainer[clipLinkContainer.length - 2];
+          insertionPoint = node.getElementsByClassName('player-buttons-right')[0].children[0].children[0];
           console.log("{TwitchEdit} marked insertion point:", insertionPoint);
-
-          //iterate through container to find the link
-          for(var j = 0; j < clipLinkContainer.length; j++) {
-            var child = clipLinkContainer[j];
-            console.log('{TwitchEdit} searching for link, testing (' + (j+1) + '/' + clipLinkContainer.length + '):', child);
-
-            //if there exists a child with an 'a' tag, get the href value
-            if(child.getElementsByTagName('a')[0] != null) {
-              clipLink = child.children[0].getAttribute('href');
-              console.log('{TwitchEdit} found full link:', clipLink);
-
-              //display how many searches we do not need to do anymore since we have found the link
-              console.log("{TwitchEdit} discarded " + (clipLinkContainer.length - (j+1)) + " search(es)");
-
-              //cut the end of the link starting at '?'
-              clipLink = clipLink.substring(0, clipLink.indexOf('?'))+"/edit";
-              console.log("{TwitchEdit} modified clip link:", clipLink);
-
-              //found the link, so break out of the loop
-              break;
-            }
-          }
 
           //modify the viewer and finish (no need to keep iterating through other additions)
           modifyViewer();
           break;
-          
-        //if the node did not match our parameters
+
         } else {
+          //if the node did not match our parameters
           console.log('{TwitchEdit} ^did not match^')
         }
       }
@@ -92,10 +62,6 @@ var observer = new MutationObserver(function(mutations) {
 //modify the clips to display new data
 function modifyViewer() {
   console.log('{TwitchEdit} beginning HTML injection');
-
-  //replace <link> with the actual link
-  console.log('{TwitchEdit} --setting link');
-  clipButtonHTML.contents = clipButtonHTML.contents.replace(linkReplace, clipLink);
 
   //set the width and height of the icon
   console.log('{TwitchEdit} --setting icon size');
@@ -134,5 +100,5 @@ function loadFile(fileSource, element) {
   });
 }
 
-//load the editButton.html
-loadFile('/html/edit/editButton.html', clipButtonHTML);
+//load the clipButton.html
+loadFile('/html/clip/clipButton.html', clipButtonHTML);
