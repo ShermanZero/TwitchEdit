@@ -17,7 +17,9 @@
 
   "content_scripts": [
     {
-      "matches": ["https://*.twitch.tv/*/manager/clips*"],
+      "matches": [
+        "*://*.twitch.tv/*/manager/clips*"
+      ],
       "js": [
         "js/content/css/inject_CSS.js",
         "js/content/edit/inject_editHTML.js"
@@ -25,7 +27,9 @@
       "run_at": "document_end"
     },
     {
-      "matches": ["https://*.twitch.tv/*"],
+      "matches": [
+        "*://*.twitch.tv/*"
+      ],
       "js": [
         "js/content/css/inject_CSS.js",
         "js/content/clip/inject_clipHTML.js"
@@ -43,9 +47,9 @@
 
   "permissions": [
     "tabs",
-    "https://clips.twitch.tv/*",
-    "https://*.twitch.tv/*/manager/clips*",
-    "https://*.twitch.tv/*"
+    "*://clips.twitch.tv/*",
+    "*://*.twitch.tv/*/manager/clips*",
+    "*://*.twitch.tv/*"
   ],
 
   "browser_action": {
