@@ -1,6 +1,6 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
-var widthAndHeight = 16;
+var iconSize = 16;
 var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/shermanzero -->";
 
 var clipHeader, clipLink, insertionPoint;
@@ -113,8 +113,8 @@ function modifyClip() {
 
   //set the width and height of the icon
   console.log("{TwitchEdit} --setting icon size");
-  editIconHTML = editIconHTML.replace('<width>', widthAndHeight);
-  editIconHTML = editIconHTML.replace('<height>', widthAndHeight);
+  editIconHTML = editIconHTML.replace('<width>', iconSize);
+  editIconHTML = editIconHTML.replace('<height>', iconSize);
 
   //inject the HTML after the insertion point
   console.log("{TwitchEdit} --injecting HTML");
