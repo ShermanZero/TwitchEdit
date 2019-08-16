@@ -6,10 +6,16 @@
   "description": "Adds an edit button to Twitch clips (in the Clips Manager) which takes you to directly editting the clip",
   "web_accessible_resources": ["css/styles.css", "html/editButton.html", "html/returnButton.html"],
 
-  "content_scripts": [{
-    "js": ["js/inject_CSS.js", "js/inject_editHTML.js", "js/inject_returnHTML.js"],
-    "matches": ["https://*.twitch.tv/*"]
-  }],
+  "content_scripts": [
+    {
+      "matches": ["https://*.twitch.tv/*/manager/clips*"],
+      "js": ["js/inject_CSS.js", "js/inject_editHTML.js"]
+    },
+    {
+      "matches": ["https://clips.twitch.tv/create"],
+      "js": ["js/inject_CSS.js", "js/inject_editHTML.js"]
+    }
+  ],
 
   "permissions": [
     "activeTab"

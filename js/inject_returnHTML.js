@@ -4,7 +4,7 @@ var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/s
 var injectionPoint, returnButtonHTML = {contents: ""};
 
 //mutation observer watching for added nodes
-const observer = new MutationObserver(function(mutations) {
+var observer = new MutationObserver(function(mutations) {
   mutations.forEach(function (mutation) {
     //if nodes were added, start iterating through them
     if(mutation.addedNodes.length > 0) {
@@ -19,24 +19,27 @@ const observer = new MutationObserver(function(mutations) {
   })
 });
 
+//find the injection point for the HTML
 injectionPoint = document.getElementsByClassName("tw-align-items-center tw-flex tw-justify-content-between tw-pd-t-1")[0].children[1];
+
+//starting the injection
+console.log('{TwitchEdit-clips} beginning HTML injection');
+
+//insert the submit button before the other submit button
+insertionPoint.insertBefore('beforestart', returnButtonHTML.contents);
+
+//successfully injected!
+console.log('{TwitchEdit-clips} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');
 
 //adds a return button to the editting page
 function modifyReturn() {
-  //starting the injection
-  console.log('{TwitchEdit} beginning HTML injection');
 
-  //insert the submit button before the other submit button
-  insertionPoint.insertBefore('beforestart', returnButtonHTML.contents);
-
-  //successfully injected!
-  console.log('{TwitchEdit} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');
 }
 
 //root node to watch changes in, make sure to pay attention to the childlist and subtree
-const root = document.getElementById('root');
-console.log('{TwitchEdit-clips} found root node, observing for changes', root);
-observer.observe(root, {
+var returnRoot = document.getElementById('root');
+console.log('{TwitchEdit-clips} found root node, observing for changes', returnRoot);
+observer.observe(returnRoot, {
   childList: true,
   subtree: true
 });
@@ -52,4 +55,5 @@ function loadFile(fileSource, variable) {
 }
 
 loadFile('/html/returnButton.html', returnButtonHTML);
-modifyReturn();
+
+window.onload = modifyReturn();

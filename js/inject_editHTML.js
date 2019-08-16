@@ -9,7 +9,7 @@ var sizeReplace = "{size}";
 var clipHeader, clipLink, insertionPoint, editButtonHTML = {contents: ""};
 
 //mutation observer watching for added nodes
-const observer = new MutationObserver(function(mutations) {
+var observer = new MutationObserver(function(mutations) {
   mutations.forEach(function (mutation) {
     //if nodes were added, start iterating through them
     if(mutation.addedNodes.length > 0) {
@@ -104,16 +104,16 @@ function modifyClip() {
   insertionPoint.insertAdjacentHTML('afterend', editButtonHTML.contents);
 
   //display the injection in the console
-  console.log('{TwitchEdit} injected: ', root.getElementsByClassName('twitchedit')[0]);
+  console.log('{TwitchEdit} injected: ', editRoot.getElementsByClassName('twitchedit')[0]);
 
   //successfully injected!
   console.log('{TwitchEdit} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');
 }
 
 //root node to watch changes in, make sure to pay attention to the childlist and subtree
-const root = document.getElementById('root');
-console.log('{TwitchEdit} found root node, observing for changes', root)
-observer.observe(root, {
+var editRoot = document.getElementById('root');
+console.log('{TwitchEdit} found root node, observing for changes', editRoot)
+observer.observe(editRoot, {
   childList: true,
   subtree: true
 });
