@@ -44,7 +44,7 @@
   "permissions": [
     "tabs",
     "https://clips.twitch.tv/*",
-    "https://*.twitch.tv/*/manager/clips*".
+    "https://*.twitch.tv/*/manager/clips*",
     "https://*.twitch.tv/*"
   ],
 
