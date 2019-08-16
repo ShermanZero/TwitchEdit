@@ -37,6 +37,9 @@
   font-size: 15px;
   text-align: center;
   outline: none;
+  position: absolute;
+  right: 0px;
+  top: 10px;
 }
 
 .twitchedit_return:hover button {

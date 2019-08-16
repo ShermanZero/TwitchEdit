@@ -29,6 +29,17 @@ var observer = new MutationObserver(function(mutations) {
         if(node.childElementCount == 2 && node.children[1].getAttribute('class') == 'tw-align-items-center tw-flex tw-justify-content-between tw-pd-t-1') {
           console.log('{TwitchEdit} DOM loaded injection point', node);
           modifyReturn();
+        } else
+        //check if the video is done publishing so we can exit the tab
+        if(node.getAttribute('class') == 'clips-post-edit-share tw-border-b tw-border-l tw-border-r tw-border-t tw-c-background-base tw-pd-3') {
+          //get the element which contains the link
+          var link = node.children[0].children[0].children[0].children[1];
+          
+          //log what we've done
+          console.log('{TwitchEdit} finished publishing clip and copied link to clipboard - closing window');
+
+          //close the tab
+          window.close();
         }
       }
     }
@@ -41,7 +52,13 @@ function modifyReturn() {
   var rootInjectionPoint = document.getElementsByClassName("tw-align-items-center tw-flex tw-justify-content-between tw-pd-t-1")[0];
 
   //log the root injection point
-  console.log('{TwitchEdit} found root injection point', rootInjectionPoint);
+  console.log('{TwitchEdit} found root injection point');
+
+  //update the position of the root injection to be relative, so the publish button will be rigt-aligned
+  rootInjectionPoint.style.position = 'relative';
+
+  //log the changes
+  console.log('{TwitchEdit} modified root injection to include position: relative', rootInjectionPoint);
 
   //remove the pesky "Clips with titles..." message
   var message = rootInjectionPoint.children[0];
