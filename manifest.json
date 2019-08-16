@@ -4,6 +4,7 @@
   "name": "TwitchEdit",
   "version": "1.4.0",
   "description": "Adds an edit button to Twitch clips (in the Clips Manager) which takes you to directly editting the clip.  Also replaces standard 'Submit' button with 'Submit and Return to Clips Manager' which automatically closes the edit tab upon submission, and reloads the Clips Manager.",
+
   "web_accessible_resources": [
     "css/editButton/editButtonStyles.css",
     "css/submitButton/submitButtonStyles.css",
@@ -19,7 +20,7 @@
       "matches": ["https://*.twitch.tv/*/manager/clips*"],
       "js": [
         "js/content/css/inject_CSS.js",
-        "js/content/inject_editHTML.js",
+        "js/content/inject_editHTML.js"
       ],
       "run_at": "document_end"
     },
