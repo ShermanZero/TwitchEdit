@@ -20,11 +20,23 @@
   background-color: rgba(56, 56, 56, 0.45);
 }
 
-.twitcheditbutton {
+.twitchedit_button {
   width: 16px;
   height: 16px;
   outline: none;
   background: transparent
+}
+
+.twitchedit_return button {
+  width: 155px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: rgb(80, 43, 146);
+  color: white;
+}
+
+.twitchedit_return:hover button {
+  background-color: rgb(105, 67, 176);
 }
 
 /* Tooltip container */

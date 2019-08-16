@@ -89,16 +89,6 @@ const observer = new MutationObserver(function(mutations) {
   })
 });
 
-//loads a file into a variable under .contents
-function loadFile(fileSource, variable) {
-  var url = chrome.runtime.getURL(fileSource);
-  fetch(url).then(function(response) {
-    response.text().then(function(text) {
-      variable.contents = (copyright + text + copyright);
-    })
-  });
-}
-
 //modify the clips to display new data
 function modifyClip() {
   console.log("{TwitchEdit} beginning HTML injection");
@@ -129,5 +119,15 @@ observer.observe(root, {
   childList: true,
   subtree: true
 });
+
+//loads a file into a variable under .contents
+function loadFile(fileSource, variable) {
+  var url = chrome.runtime.getURL(fileSource);
+  fetch(url).then(function(response) {
+    response.text().then(function(text) {
+      variable.contents = (copyright + text + copyright);
+    })
+  });
+}
 
 loadFile('/html/editButton.html', editButtonHTML);
