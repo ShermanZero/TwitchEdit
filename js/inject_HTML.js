@@ -1,10 +1,10 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
 var widthAndHeight = 16;
-var copyright = "<!-- TwitchEdit COPYRIGHT © 2019 KIERAN SHERMAN | twitch.tv/ShermanZero -->";
+var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/shermanzero -->";
 
-var clipsRoot, clipHeader, clipLink, insertionPoint;
-var clipHTML = ""+
+var clipHeader, clipLink, insertionPoint;
+var editIconHTML = ""+
 copyright+
 "<div class='twitchedit'>"+
   "<div class='twitchedit_tooltip'>"+
@@ -109,16 +109,16 @@ function modifyClip() {
 
   //replace <link> with the actual link
   console.log("{TwitchEdit} --setting link");
-  clipHTML = clipHTML.replace('<link>', clipLink);
+  editIconHTML = editIconHTML.replace('<link>', clipLink);
 
   //set the width and height of the icon
   console.log("{TwitchEdit} --setting icon size");
-  clipHTML = clipHTML.replace('<width>', widthAndHeight);
-  clipHTML = clipHTML.replace('<height>', widthAndHeight);
+  editIconHTML = editIconHTML.replace('<width>', widthAndHeight);
+  editIconHTML = editIconHTML.replace('<height>', widthAndHeight);
 
   //inject the HTML after the insertion point
   console.log("{TwitchEdit} --injecting HTML");
-  insertionPoint.insertAdjacentHTML('afterend', clipHTML);
+  insertionPoint.insertAdjacentHTML('afterend', editHTM);
 
   //display the injection in the console
   console.log("{TwitchEdit} injected: ", root.getElementsByClassName('twitchedit')[0]);
