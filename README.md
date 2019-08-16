@@ -1,5 +1,5 @@
 # TwitchEdit
-### v1.2
+### v1.3.1
 
 ![TwitchEdit](resources/popup.jpg)
 
