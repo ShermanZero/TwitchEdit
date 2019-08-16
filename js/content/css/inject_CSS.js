@@ -21,4 +21,6 @@ injectStyles(chrome.extension.getURL('css/clip/clipButtonStyles.css'));
 //inject edit styles
 injectStyles(chrome.extension.getURL('css/edit/editButtonStyles.css'));
 
+/* ================================================================================== */
 /* NOTE THAT THE PUBLISH BUTTON CSS IS INJECTED PROGRAMATICALLY WIHTHIN BACKGROUND.JS */
+/* ================================================================================== */
