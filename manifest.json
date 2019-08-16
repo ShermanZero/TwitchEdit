@@ -4,18 +4,32 @@
   "name": "TwitchEdit",
   "version": "1.4.0",
   "description": "Adds an edit button to Twitch clips (in the Clips Manager) which takes you to directly editting the clip.  Also replaces standard 'Submit' button with 'Submit and Return to Clips Manager' which automatically closes the edit tab upon submission, and reloads the Clips Manager.",
-  "web_accessible_resources": ["css/styles.css", "html/editButton.html", "html/returnButton.html"],
+  "web_accessible_resources": ["css/styles.css", "html/editButton.html", "html/returnButton.html", "html/clipButton.html"],
 
   "content_scripts": [
     {
       "matches": ["https://*.twitch.tv/*/manager/clips*"],
-      "js": ["js/inject_CSS.js", "js/inject_editHTML.js"],
+      "js": [
+        "js/content/css/inject_CSS.js",
+        "js/content/inject_editHTML.js",
+
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://*.twitch.tv/*"],
+      "js": [
+        "js/content/css/inject_CSS.js",
+        "js/content/inject_clipHTML.js"
+      ],
       "run_at": "document_end"
     }
   ],
 
   "background": {
-    "scripts": ["js/background.js"],
+    "scripts": [
+      "js/background/background.js"
+    ],
     "persistent": false
   },
 
@@ -26,12 +40,12 @@
 
   "browser_action": {
     "default_title": "TwitchEdit",
-    "default_popup": "html/popup.html"
+    "default_popup": "html/popup/popup.html"
   },
 
   "icons": {
-    "16": "icons/extension/twitchedit_icon_extension_16.png",
-    "48": "icons/extension/twitchedit_icon_extension_48.png",
-    "128": "icons/extension/twitchedit_icon_extension_128.png"
+    "16": "icons/twitchedit/twitchedit_16.png",
+    "48": "icons/twitchedit/twitchedit_48.png",
+    "128": "icons/twitchedit/twitchedit_128.png"
   }
 }
