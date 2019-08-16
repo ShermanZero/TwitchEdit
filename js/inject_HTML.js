@@ -3,27 +3,13 @@
 var iconSize = 16;
 var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/shermanzero -->";
 
-var clipHeader, clipLink, insertionPoint;
-var editIconHTML = ""+
-copyright+
-"<div class='twitchedit'>"+
-  "<div class='twitchedit_tooltip'>"+
-    "<span class='twitchedit_tooltip-text'>"+
-      "Edit"+
-    "</span>"+
-    "<div class='twitchedit_highlight-box'>"+
-      "<div class='twitchedit_centered-link'>"+
-        "<a href='<link>' target='_blank'>"+
-          "<img src='https://i.imgur.com/o8SHTcI.png' width='<width>' height='<height>'>"+
-        "</a>"+
-      "</div>"+
-    "</div>"+
-  "</div>"+
-"</div>"+
-copyright;
+var linkReplace = "{link}";
+var sizeReplace = "{size}";
+
+var clipHeader, clipLink, insertionPoint, editButtonHTML = {contents: ""};
 
 //logs that the extension registered the Clips Manager has been loaded
-console.log("{TwitchEdit} Twitch clips manager page has been loaded!");
+console.log('{TwitchEdit} Twitch clips manager page has been loaded!');
 
 //mutation observer watching for added nodes
 const observer = new MutationObserver(function(mutations) {
@@ -103,22 +89,32 @@ const observer = new MutationObserver(function(mutations) {
   })
 });
 
+//loads a file into a variable under .contents
+function loadFile(fileSource, variable) {
+  var url = chrome.runtime.getURL(fileSource);
+  fetch(url).then(function(response) {
+    response.text().then(function(text) {
+      variable.contents = (copyright + text + copyright);
+    })
+  });
+}
+
 //modify the clips to display new data
 function modifyClip() {
   console.log("{TwitchEdit} beginning HTML injection");
 
   //replace <link> with the actual link
   console.log("{TwitchEdit} --setting link");
-  editIconHTML = editIconHTML.replace('<link>', clipLink);
+  editButtonHTML.contents = editButtonHTML.contents.replace(linkReplace, clipLink);
 
   //set the width and height of the icon
   console.log("{TwitchEdit} --setting icon size");
-  editIconHTML = editIconHTML.replace('<width>', iconSize);
-  editIconHTML = editIconHTML.replace('<height>', iconSize);
+  editButtonHTML.contents = editButtonHTML.contents.replace(sizeReplace, iconSize);
+  editButtonHTML.contents = editButtonHTML.contents.replace(sizeReplace, iconSize);
 
   //inject the HTML after the insertion point
   console.log("{TwitchEdit} --injecting HTML");
-  insertionPoint.insertAdjacentHTML('afterend', editHTM);
+  insertionPoint.insertAdjacentHTML('afterend', editButtonHTML.contents);
 
   //display the injection in the console
   console.log("{TwitchEdit} injected: ", root.getElementsByClassName('twitchedit')[0]);
@@ -133,3 +129,5 @@ observer.observe(root, {
   childList: true,
   subtree: true
 });
+
+loadFile('/html/editButton.html', editButtonHTML);

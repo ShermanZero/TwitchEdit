@@ -20,6 +20,13 @@
   background-color: rgba(56, 56, 56, 0.45);
 }
 
+.twitcheditbutton {
+  width: 16px;
+  height: 16px;
+  outline: none;
+  background: transparent
+}
+
 /* Tooltip container */
 .twitchedit_tooltip {
   position: relative;

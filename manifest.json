@@ -4,11 +4,11 @@
   "name": "TwitchEdit",
   "version": "1.2.1",
   "description": "Adds an edit button to Twitch clips (in the Clips Manager) which takes you to directly editting the clip",
-  "web_accessible_resources": ["css/styles.css"],
+  "web_accessible_resources": ["css/styles.css", "html/editButton.html"],
 
   "content_scripts": [{
     "js": ["js/inject_CSS.js", "js/inject_HTML.js"],
-    "matches": ["https://*.twitch.tv/*/manager/clips*"]
+    "matches": ["https://*.twitch.tv/*", "https://clips.twitch.tv/create"]
   }],
 
   "permissions": [
@@ -21,8 +21,8 @@
   },
 
   "icons": {
-    "16": "icons/twitchedit_icon_extension_16.png",
-    "48": "icons/twitchedit_icon_extension_48.png",
-    "128": "icons/twitchedit_icon_extension_128.png"
+    "16": "icons/extension/twitchedit_icon_extension_16.png",
+    "48": "icons/extension/twitchedit_icon_extension_48.png",
+    "128": "icons/extension/twitchedit_icon_extension_128.png"
   }
 }
