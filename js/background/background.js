@@ -7,12 +7,12 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if(changeInfo.url !== undefined && changeInfo.url.includes('clips.twitch.tv/create')) {
     //inject the submitHTML javascript
     chrome.tabs.executeScript(null, {
-      file: '/js/content/inject_submitHTML.js'
+      file: '/js/content/submit/inject_submitHTML.js'
     });
 
     //insert the CSS
     chrome.tabs.insertCSS(tab.id, {
-      file: "/css/submitButton/submitButtonStyles.css"
+      file: "/css/submit/submitButtonStyles.css"
     });
   }
 

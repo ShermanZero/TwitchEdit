@@ -7,12 +7,12 @@
 
   "web_accessible_resources": [
     "css/edit/editButtonStyles.css",
-    "css/submit/submitButtonStyles.css",
+    "css/publish/publishButtonStyles.css",
     "css/clip/clipButtonStyles.css",
 
-    "html/editButton.html",
-    "html/submitButton.html",
-    "html/clipButton.html"
+    "html/edit/editButton.html",
+    "html/publish/publishButton.html",
+    "html/clip/clipButton.html"
   ],
 
   "content_scripts": [
@@ -20,7 +20,7 @@
       "matches": ["https://*.twitch.tv/*/manager/clips*"],
       "js": [
         "js/content/css/inject_CSS.js",
-        "js/content/inject_editHTML.js"
+        "js/content/edit/inject_editHTML.js"
       ],
       "run_at": "document_end"
     },
@@ -28,7 +28,7 @@
       "matches": ["https://*.twitch.tv/*"],
       "js": [
         "js/content/css/inject_CSS.js",
-        "js/content/inject_clipHTML.js"
+        "js/content/clip/inject_clipHTML.js"
       ],
       "run_at": "document_end"
     }

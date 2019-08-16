@@ -117,4 +117,4 @@ function loadFile(fileSource, element) {
 }
 
 //load the submitButton.html
-loadFile('/html/submitButton.html', submitButtonHTML);
+loadFile('/html/publish/publishButton.html', submitButtonHTML);

@@ -1,0 +1,20 @@
+/* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
+
+.twitchedit_publish button {
+  width: 285px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: rgb(95, 68, 158);
+  color: white;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  text-align: center;
+  outline: none;
+  position: absolute;
+  right: 0px;
+  top: 15px;
+}
+
+.twitchedit_publish_submit:hover button {
+  background-color: rgb(120, 94, 184);
+}

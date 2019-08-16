@@ -6,7 +6,7 @@
 }
 
 /* The box which gets highlighted on hover */
-.twitchedit_highlight-box {
+.twitchedit_edit_highlight-box {
   width: 30px;
   height: 30px;
   display: flex;
@@ -16,44 +16,25 @@
   background-color: rgba(56, 56, 56, 0);
 }
 
-.twitchedit_highlight-box:hover {
+.twitchedit_edit_highlight-box:hover {
   background-color: rgba(56, 56, 56, 0.45);
 }
 
-.twitchedit_button {
+.twitchedit_edit_button {
   width: 16px;
   height: 16px;
   outline: none;
   background: transparent
 }
 
-.twitchedit_return button {
-  width: 285px;
-  height: 35px;
-  border-radius: 5px;
-  background-color: rgb(95, 68, 158);
-  color: white;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  text-align: center;
-  outline: none;
-  position: absolute;
-  right: 0px;
-  top: 10px;
-}
-
-.twitchedit_return:hover button {
-  background-color: rgb(120, 94, 184);
-}
-
 /* Tooltip container */
-.twitchedit_tooltip {
+.twitchedit_edit_tooltip {
   position: relative;
   display: inline-block;
 }
 
 /* Tooltip text */
-.twitchedit_tooltip .twitchedit_tooltip-text {
+.twitchedit_edit_tooltip .twitchedit_edit_tooltip-text {
   visibility: hidden;
   width: 34px;
   background-color: white;
@@ -73,7 +54,7 @@
 }
 
 /* Tooltip arrow */
-.twitchedit_tooltip .twitchedit_tooltip-text::after {
+.twitchedit_edit_tooltip .twitchedit_edit_tooltip-text::after {
   content: "";
   position: absolute;
   top: 70%;
@@ -85,7 +66,7 @@
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
-.twitchedit_tooltip:hover .twitchedit_tooltip-text {
+.twitchedit_edit_tooltip:hover .twitchedit_edit_tooltip-text {
   visibility: visible;
   opacity: 1;
 }

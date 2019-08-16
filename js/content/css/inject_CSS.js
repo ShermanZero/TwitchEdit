@@ -16,10 +16,10 @@ function injectStyles(url) {
 }
 
 //inject clip styles
-injectStyles(chrome.extension.getURL('css/clipButton/clipButtonStyles.css'));
+injectStyles(chrome.extension.getURL('css/clip/clipButtonStyles.css'));
 
 //inject edit styles
-injectStyles(chrome.extension.getURL('css/editButton/editButtonStyles.css'));
+injectStyles(chrome.extension.getURL('css/edit/editButtonStyles.css'));
 
 //inject submit styles
-injectStyles(chrome.extension.getURL('css/submitButton/submitButtonStyles.css'));
+injectStyles(chrome.extension.getURL('css/submit/submitButtonStyles.css'));

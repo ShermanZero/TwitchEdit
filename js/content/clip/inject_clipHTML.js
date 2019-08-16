@@ -79,6 +79,7 @@ var observer = new MutationObserver(function(mutations) {
           //modify the viewer and finish (no need to keep iterating through other additions)
           modifyViewer();
           break;
+          
         //if the node did not match our parameters
         } else {
           console.log('{TwitchEdit} ^did not match^')
@@ -134,4 +135,4 @@ function loadFile(fileSource, element) {
 }
 
 //load the editButton.html
-loadFile('/html/editButton.html', clipButtonHTML);
+loadFile('/html/edit/editButton.html', clipButtonHTML);
