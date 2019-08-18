@@ -1,12 +1,12 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
-console.log('{TwitchEdit-Clip} Content script loaded and started');
+console.log('{TwitchEdit-Delete} Content script loaded and started');
 
 var iconSize = 16;
 var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/shermanzero -->";
 var sizeReplace = "{size}";
 
-var insertionPoint, clipButtonHTML = {contents: ""};
+var insertionPoint, deleteButtonHTML = {contents: ""};
 
 //mutation observer watching for added nodes
 var observer = new MutationObserver(function(mutations) {
@@ -63,12 +63,12 @@ function modifyViewer() {
 
   //set the width and height of the icon
   console.log('{TwitchEdit} --setting icon size');
-  clipButtonHTML.contents = clipButtonHTML.contents.replace(sizeReplace, iconSize);
-  clipButtonHTML.contents = clipButtonHTML.contents.replace(sizeReplace, iconSize);
+  deleteButtonHTML.contents = deleteButtonHTML.contents.replace(sizeReplace, iconSize);
+  deleteButtonHTML.contents = deleteButtonHTML.contents.replace(sizeReplace, iconSize);
 
   //inject the HTML after the insertion point
   console.log('{TwitchEdit} --injecting HTML');
-  insertionPoint.insertAdjacentHTML('afterend', clipButtonHTML.contents);
+  insertionPoint.insertAdjacentHTML('afterend', deleteButtonHTML.contents);
 
   //display the injection in the console
   console.log('{TwitchEdit} injected: ', editRoot.getElementsByClassName('twitchedit')[0]);
@@ -99,4 +99,4 @@ function loadFile(fileSource, element) {
 }
 
 //load the clipButton.html
-loadFile('/html/clip/clipButton.html', clipButtonHTML);
+loadFile('/html/clip/clipButton.html', deleteButtonHTML);

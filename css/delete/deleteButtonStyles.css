@@ -1,0 +1,18 @@
+/* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
+
+.twitchedit {
+  margin-left: 4px;
+  margin-top: 4px;
+  margin-right: 4px;
+}
+
+.twitchedit_delete_button {
+  width: 22px;
+  height: 22px;
+  outline: none;
+  background: transparent
+}
+
+.twitchedit_delete_button:hover {
+  color: rgba(165, 149, 210);
+}
