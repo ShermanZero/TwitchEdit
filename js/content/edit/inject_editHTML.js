@@ -93,10 +93,6 @@ var observer = new MutationObserver(function(mutations) {
 function modifyClip() {
   console.log('{TwitchEdit-Edit} beginning HTML injection');
 
-  //replace <link> with the actual link
-  console.log('{TwitchEdit-Edit} --setting link');
-  editButtonHTML.contents = editButtonHTML.contents.replace(linkReplace, clipLink);
-
   //set the width and height of the icon
   console.log('{TwitchEdit-Edit} --setting icon size');
   editButtonHTML.contents = editButtonHTML.contents.replace(sizeReplace, iconSize);
@@ -107,7 +103,16 @@ function modifyClip() {
   insertionPoint.insertAdjacentHTML('afterend', editButtonHTML.contents);
 
   //display the injection in the console
-  console.log('{TwitchEdit-Edit} injected: ', editRoot.getElementsByClassName('twitchedit-clip')[0]);
+  console.log('{TwitchEdit-Edit} injected: ', editRoot.getElementsByClassName('twitchedit-edit')[0]);
+
+  //get the new edit button and add an onclick function
+  document.getElementById('twitchedit-edit-button').onclick = function() {
+    //open the clip edit link in a new tab and create a new entry in the history list
+    window.open(clipLink, "_blank", "", false);
+  };
+
+  //log that we have set the button to open a link
+  console.log('{TwitchEdit-Edit} set edit button onclick event to open link');
 
   //successfully injected!
   console.log('{TwitchEdit-Edit} !!- HTML injection COMPLETED | You can now click on the clip icon to clip without redirection -!!');

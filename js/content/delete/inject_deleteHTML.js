@@ -83,14 +83,40 @@ var rootObserver = new MutationObserver(function(mutations) {
   })
 });
 
-var reactObserver = new MutationObserver(function(mutations)) {
+//mutation observer watching for added nodes
+var reactObserver = new MutationObserver(function(mutations) {
+  var success = false;
+
   mutations.forEach(function (mutation) {
     //if nodes were added, start iterating through them
     if(mutation.addedNodes.length > 0) {
+      for(var i = 0; i < mutation.addedNodes.length; i++) {
+        //initialize the node variable
+        var node = mutation.addedNodes[i];
 
+        //log that the MutationObserver has noticed the added node (DEV)
+        //console.log('{TwitchEdit-Delete-DEV} DOM added node to ReactModal:', node);
+
+        //checks for a very specific node (the "Success!" node to appear)
+        if(node.textContent == 'Success!') {
+          //the success text has loaded
+          success = true;
+
+          //log that the clip has finished deleting
+          console.log('{TwitchEdit-Delete} clip has finished deleting');
+        } else
+        //if the success text has loaded and the close button parent div is detected
+        if (success && node.getElementsByClassName('tw-mg-x-1')[0] != undefined) {
+          //click the "Close" button
+          node.getElementsByClassName('tw-mg-x-1')[0].getElementsByTagName('button')[0].click();
+
+          //log that we automatically clicked the close button
+          console.log('{TwitchEdit-Delete} clip has finished deleting');
+        }
+      }
     }
-  }
-}
+  })
+});
 
 //modify the clips to display new data
 function injectDelete() {
@@ -119,11 +145,6 @@ function injectDelete() {
 
     //press the "delete" in the window that pops up
     document.getElementsByClassName('tw-align-items-center tw-align-middle tw-border-bottom-left-radius-medium tw-border-bottom-right-radius-medium tw-border-top-left-radius-medium tw-border-top-right-radius-medium tw-core-button tw-core-button--border tw-core-button--destructive tw-core-button--padded tw-inline-flex tw-interactive tw-justify-content-center tw-overflow-hidden tw-relative')[0].click();
-
-    //reload the page after half a second has passed
-    setTimeout(function() {
-      //window.location.reload(true);
-    }, 500);
   };
 
   //successfully injected!

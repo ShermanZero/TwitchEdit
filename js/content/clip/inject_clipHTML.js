@@ -73,6 +73,11 @@ function modifyViewer() {
   //display the injection in the console
   console.log('{TwitchEdit-Clip} injected: ', editRoot.getElementsByClassName('twitchedit-clip')[0]);
 
+  //set the new clip button to simulate an ALT-X keyboard press
+  document.getElementById('twitchedit-clip-button').onclick = function() {
+
+  };
+
   //successfully injected!
   console.log('{TwitchEdit-Clip} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');
 }
