@@ -1,18 +1,72 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
 .twitchedit {
-  margin-left: 4px;
-  margin-top: 4px;
-  margin-right: 4px;
+  margin-left: 5px;
+  margin-top: 1px;
+}
+
+/* The box which gets highlighted on hover */
+.twitchedit_delete_highlight-box {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: rgba(56, 56, 56, 0);
+}
+
+.twitchedit_delete_highlight-box:hover {
+  background-color: rgba(56, 56, 56, 0.45);
 }
 
 .twitchedit_delete_button {
-  width: 22px;
-  height: 22px;
+  width: 16px;
+  height: 16px;
   outline: none;
   background: transparent
 }
 
-.twitchedit_delete_button:hover {
-  color: rgba(165, 149, 210);
+/* Tooltip container */
+.twitchedit_delete_tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.twitchedit_delete_tooltip .twitchedit_delete_tooltip-text {
+  visibility: hidden;
+  width: 34px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 1px 0;
+  border-radius: 4px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 118%;
+  left: 50%;
+  margin-left: -18px;
+
+  opacity: 0;
+}
+
+/* Tooltip arrow */
+.twitchedit_delete_tooltip .twitchedit_delete_tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.twitchedit_delete_tooltip:hover .twitchedit_delete_tooltip-text {
+  visibility: visible;
+  opacity: 1;
 }

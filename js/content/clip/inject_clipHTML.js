@@ -34,15 +34,15 @@ var observer = new MutationObserver(function(mutations) {
         }
 
         //log that the MutationObserver has noticed the added node
-        console.log('{TwitchEdit} DOM added node:', node);
+        console.log('{TwitchEdit-Clip} DOM added node:', node);
 
         //if the clips container has been loaded in
         if(node.hasChildNodes()) {
-          console.log('{TwitchEdit} ^found match^');
+          console.log('{TwitchEdit-Clip} ^found match^');
 
           //marks the insertion point
           insertionPoint = node.getElementsByClassName('player-buttons-right')[0].children[0].children[0];
-          console.log("{TwitchEdit} marked insertion point:", insertionPoint);
+          console.log("{TwitchEdit-Clip} marked insertion point:", insertionPoint);
 
           //modify the viewer and finish (no need to keep iterating through other additions)
           modifyViewer();
@@ -50,7 +50,7 @@ var observer = new MutationObserver(function(mutations) {
 
         } else {
           //if the node did not match our parameters
-          console.log('{TwitchEdit} ^did not match^')
+          console.log('{TwitchEdit-Clip} ^did not match^')
         }
       }
     }
@@ -59,27 +59,27 @@ var observer = new MutationObserver(function(mutations) {
 
 //modify the clips to display new data
 function modifyViewer() {
-  console.log('{TwitchEdit} beginning HTML injection');
+  console.log('{TwitchEdit-Clip} beginning HTML injection');
 
   //set the width and height of the icon
-  console.log('{TwitchEdit} --setting icon size');
+  console.log('{TwitchEdit-Clip} --setting icon size');
   clipButtonHTML.contents = clipButtonHTML.contents.replace(sizeReplace, iconSize);
   clipButtonHTML.contents = clipButtonHTML.contents.replace(sizeReplace, iconSize);
 
   //inject the HTML after the insertion point
-  console.log('{TwitchEdit} --injecting HTML');
+  console.log('{TwitchEdit-Clip} --injecting HTML');
   insertionPoint.insertAdjacentHTML('afterend', clipButtonHTML.contents);
 
   //display the injection in the console
-  console.log('{TwitchEdit} injected: ', editRoot.getElementsByClassName('twitchedit')[0]);
+  console.log('{TwitchEdit-Clip} injected: ', editRoot.getElementsByClassName('twitchedit')[0]);
 
   //successfully injected!
-  console.log('{TwitchEdit} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');
+  console.log('{TwitchEdit-Clip} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');
 }
 
 //root node to watch changes in, make sure to pay attention to the childlist and subtrees
 var editRoot = document.getElementById('root');
-console.log('{TwitchEdit} found root node, observing for changes', editRoot)
+console.log('{TwitchEdit-Clip} found root node, observing for changes', editRoot)
 
 //observe the childList and subtrees
 observer.observe(editRoot, {

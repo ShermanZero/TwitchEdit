@@ -24,7 +24,8 @@
       ],
       "js": [
         "js/content/css/inject_CSS.js",
-        "js/content/edit/inject_editHTML.js"
+        "js/content/edit/inject_editHTML.js",
+        "js/content/delete/inject_deleteHTML.js"
       ],
       "run_at": "document_end"
     },
@@ -34,8 +35,7 @@
       ],
       "js": [
         "js/content/css/inject_CSS.js",
-        "js/content/clip/inject_clipHTML.js",
-        "js/content/delete/inject_deleteHTML.js"
+        "js/content/clip/inject_clipHTML.js"
       ],
       "run_at": "document_end"
     }

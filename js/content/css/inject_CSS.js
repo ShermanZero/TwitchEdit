@@ -15,9 +15,10 @@ function injectStyles(url) {
   document.body.appendChild(stylesElement);
 }
 
-//inject edit styles if we are on a /manager/clips page
+//inject edit and delete styles if we are on a /manager/clips page
 if(window.location.href.includes('/manager/clips')) {
   injectStyles(chrome.extension.getURL('css/edit/editButtonStyles.css'));
+  injectStyles(chrome.extension.getURL('css/delete/deleteButtonStyles.css'));
 } else
 //otherwise, inject clip styles if we are on a twitch.tv/ page
 if(window.location.href.includes('twitch.tv/')) {
