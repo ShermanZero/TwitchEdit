@@ -102,14 +102,11 @@ var reactObserver = new MutationObserver(function(mutations) {
 
         //if the check is valid and not undefined
         if(check !== undefined) {
-          //wait for 10 milliseconds just to make sure everything is all lodded
-          setTimeout(function() {
-            //press the "Delete" button
-            check.getElementsByTagName('button')[1].click();
+          //press the "Delete" button
+          check.getElementsByTagName('button')[1].click();
 
-            //log that we automatically clicked the delete button
-            console.log('{TwitchEdit-Delete} automatically pressed delete');
-          }, 10);
+          //log that we automatically clicked the delete button
+          console.log('{TwitchEdit-Delete} automatically pressed delete');
         }
         else
         //checks for a very specific node (the "Success!" node to appear)
@@ -122,14 +119,11 @@ var reactObserver = new MutationObserver(function(mutations) {
         } else
         //if the success text has loaded and the close button parent div is detected
         if (success && node.getElementsByClassName('tw-mg-x-1')[0] != undefined) {
-          //wait for 10 milliseconds just to make sure everything is all loaded
-          setTimeout(function() {
-            //click the "Close" button
-            node.getElementsByClassName('tw-mg-x-1')[0].getElementsByTagName('button')[0].click();
+          //click the "Close" button
+          node.getElementsByClassName('tw-mg-x-1')[0].getElementsByTagName('button')[0].click();
 
-            //log that we automatically clicked the close button
-            console.log('{TwitchEdit-Delete} automatically closed window');
-          }, 10);
+          //log that we automatically clicked the close button
+          console.log('{TwitchEdit-Delete} automatically closed window');
         }
       }
     }
