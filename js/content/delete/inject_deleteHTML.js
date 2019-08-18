@@ -135,4 +135,4 @@ function loadFile(fileSource, element) {
 }
 
 //load the editButton.html
-loadFile('/html/clip/clipButton.html', clipButtonHTML);
+loadFile('/html/delete/deleteButton.html', clipButtonHTML);
