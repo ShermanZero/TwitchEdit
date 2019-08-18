@@ -20,7 +20,7 @@ var rootObserver = new MutationObserver(function(mutations) {
         var node = mutation.addedNodes[i];
 
         //log that the MutationObserver has noticed the added node (DEV)
-        console.log('{TwitchEdit-Delete-DEV} DOM added node:', node);
+        //console.log('{TwitchEdit-Delete-DEV} DOM added node:', node);
 
         //if the node is null or does not match our parameters
         if(node == null || node.nodeName != "DIV" || node.nodeType != 1 ) {
@@ -95,8 +95,23 @@ var reactObserver = new MutationObserver(function(mutations) {
         var node = mutation.addedNodes[i];
 
         //log that the MutationObserver has noticed the added node (DEV)
-        //console.log('{TwitchEdit-Delete-DEV} DOM added node to ReactModal:', node);
+        console.log('{TwitchEdit-Delete-DEV} DOM added node to ReactModal:', node);
 
+        //"Delete This Clip" menu
+        var check = node.getElementsByClassName('ReactModal__Content ReactModal__Content--after-open modal__content')[0];
+
+        //if the check is valid and not undefined
+        if(check !== undefined) {
+          //wait for 10 milliseconds just to make sure everything is all lodded
+          setTimeout(function() {
+            //press the "Delete" button
+            check.getElementsByTagName('button')[1].click();
+
+            //log that we automatically clicked the delete button
+            console.log('{TwitchEdit-Delete} automatically pressed delete');
+          }, 10);
+        }
+        else
         //checks for a very specific node (the "Success!" node to appear)
         if(node.textContent == 'Success!') {
           //the success text has loaded
@@ -107,11 +122,14 @@ var reactObserver = new MutationObserver(function(mutations) {
         } else
         //if the success text has loaded and the close button parent div is detected
         if (success && node.getElementsByClassName('tw-mg-x-1')[0] != undefined) {
-          //click the "Close" button
-          node.getElementsByClassName('tw-mg-x-1')[0].getElementsByTagName('button')[0].click();
+          //wait for 10 milliseconds just to make sure everything is all loaded
+          setTimeout(function() {
+            //click the "Close" button
+            node.getElementsByClassName('tw-mg-x-1')[0].getElementsByTagName('button')[0].click();
 
-          //log that we automatically clicked the close button
-          console.log('{TwitchEdit-Delete} clip has finished deleting');
+            //log that we automatically clicked the close button
+            console.log('{TwitchEdit-Delete} automatically closed window');
+          }, 10);
         }
       }
     }
@@ -142,9 +160,6 @@ function injectDelete() {
   document.getElementById('twitchedit-delete-button').onclick = function() {
     //click the original delete button
     twitchDeleteButton.click();
-
-    //press the "delete" in the window that pops up
-    document.getElementsByClassName('tw-align-items-center tw-align-middle tw-border-bottom-left-radius-medium tw-border-bottom-right-radius-medium tw-border-top-left-radius-medium tw-border-top-right-radius-medium tw-core-button tw-core-button--border tw-core-button--destructive tw-core-button--padded tw-inline-flex tw-interactive tw-justify-content-center tw-overflow-hidden tw-relative')[0].click();
   };
 
   //successfully injected!
