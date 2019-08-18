@@ -16,6 +16,7 @@ If you appreciate what I've done, please feel free to head over to my [Twitch ch
 **v1.5.0 (8/18/19)**
 - Replaced the clip delete icon with custom delete icon which automates the clip deletion process
 - Started adding functionality for a new clip feature
+- Removes the "Watch on Clips Page" button
 
 **v1.4.0 (8/16/19)**
 - Changed the way the HTTP request is made to open a new tab to edit a clip
