@@ -1,7 +1,6 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
 .twitchedit-delete {
-  margin-left: 5px;
   margin-top: 1px;
   margin-right: 5px;
 }
@@ -37,7 +36,7 @@
 /* Tooltip text */
 .twitchedit_delete_tooltip .twitchedit_delete_tooltip-text {
   visibility: hidden;
-  width: 44px;
+  width: 48px;
   background-color: white;
   color: black;
   text-align: center;
@@ -49,7 +48,7 @@
   z-index: 1;
   bottom: 118%;
   left: 50%;
-  margin-left: -22px;
+  margin-left: -24px;
 
   opacity: 0;
 }

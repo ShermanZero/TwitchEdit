@@ -8,10 +8,10 @@ var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/s
 var linkReplace = "{link}";
 var sizeReplace = "{size}";
 
-var clipHeader, clipLink, insertionPoint, deleteButtonHTML = {contents: ""};
+var clipHeader, clipLink, insertionPoint, twitchDeleteButton, deleteButtonHTML = {contents: ""};
 
 //mutation observer watching for added nodes
-var observer = new MutationObserver(function(mutations) {
+var rootObserver = new MutationObserver(function(mutations) {
   mutations.forEach(function (mutation) {
     //if nodes were added, start iterating through them
     if(mutation.addedNodes.length > 0) {
@@ -20,14 +20,14 @@ var observer = new MutationObserver(function(mutations) {
         var node = mutation.addedNodes[i];
 
         //log that the MutationObserver has noticed the added node (DEV)
-        //console.log('{TwitchEdit-DEV} DOM added node:', node);
+        console.log('{TwitchEdit-Delete-DEV} DOM added node:', node);
 
         //if the node is null or does not match our parameters
         if(node == null || node.nodeName != "DIV" || node.nodeType != 1 ) {
           continue;
         } else
         //if the node has my class, ignore it
-        if(node.hasAttribute('class') && node.getAttribute('class') == 'twitchedit') {
+        if(node.hasAttribute('class') && node.getAttribute('class').includes('twitchedit')) {
           continue;
         } else
         //if all other tests pass, but if the node is not exactly what we are looking for, continue
@@ -50,11 +50,24 @@ var observer = new MutationObserver(function(mutations) {
           clipLinkContainer = node.getElementsByClassName('tw-inline-flex tw-tooltip-wrapper');
           console.log("{TwitchEdit-Delete} found link container:", clipLinkContainer);
 
-          var twitchDeleteButton = clipLinkContainer[1];
-          twitchDeleteButton.style.visibility = 'hidden';
+          //save the delete button for reference by function
+          twitchDeleteButton = clipLinkContainer[clipLinkContainer.length-4].getElementsByTagName('button')[0];
+          console.log("{TwitchEdit-Delete} storing delete button reference", twitchDeleteButton);
+
+          //hide the original delete button
+          clipLinkContainer[clipLinkContainer.length-4].style.visibility = 'hidden';
+          console.log("{TwitchEdit-Delete} --setting delete button to hidden");
+
+          //shrink the width of the original delete button to 0px
+          clipLinkContainer[clipLinkContainer.length-4].style.width = '0px';
+          console.log("{TwitchEdit-Delete} --setting delete button to width of 0px");
+
+          //remove the "Watch on Clips Page" icon
+          clipLinkContainer[clipLinkContainer.length-2].remove();
+          console.log("{TwitchEdit-Delete} --removing Watch on Clips Page button");
 
           //marks the insertion point
-          insertionPoint = clipLinkContainer[1];
+          insertionPoint = clipLinkContainer[0];
           console.log("{TwitchEdit-Delete} marked insertion point:", insertionPoint);
 
           //inject the delete button
@@ -69,6 +82,15 @@ var observer = new MutationObserver(function(mutations) {
     }
   })
 });
+
+var reactObserver = new MutationObserver(function(mutations)) {
+  mutations.forEach(function (mutation) {
+    //if nodes were added, start iterating through them
+    if(mutation.addedNodes.length > 0) {
+
+    }
+  }
+}
 
 //modify the clips to display new data
 function injectDelete() {
@@ -88,21 +110,45 @@ function injectDelete() {
   insertionPoint.insertAdjacentHTML('afterend', deleteButtonHTML.contents);
 
   //display the injection in the console
-  console.log('{TwitchEdit-Delete} injected: ', editRoot.getElementsByClassName('twitchedit-delete')[0]);
+  console.log('{TwitchEdit-Delete} injected: ', rootNode.getElementsByClassName('twitchedit-delete')[0]);
+
+  //set the new delete button to do the same thing as the old delete button
+  document.getElementById('twitchedit-delete-button').onclick = function() {
+    //click the original delete button
+    twitchDeleteButton.click();
+
+    //press the "delete" in the window that pops up
+    document.getElementsByClassName('tw-align-items-center tw-align-middle tw-border-bottom-left-radius-medium tw-border-bottom-right-radius-medium tw-border-top-left-radius-medium tw-border-top-right-radius-medium tw-core-button tw-core-button--border tw-core-button--destructive tw-core-button--padded tw-inline-flex tw-interactive tw-justify-content-center tw-overflow-hidden tw-relative')[0].click();
+
+    //reload the page after half a second has passed
+    setTimeout(function() {
+      //window.location.reload(true);
+    }, 500);
+  };
 
   //successfully injected!
   console.log('{TwitchEdit-Delete} !!- HTML injection COMPLETED | You can now click on the clip icon to clip without redirection -!!');
 }
 
-//root node to watch changes in, make sure to pay attention to the childlist and subtrees
-var editRoot = document.getElementById('root');
-console.log('{TwitchEdit-Delete} found root node, observing for changes', editRoot)
+//root node to watch changes in
+var rootNode = document.getElementById('root');
+console.log('{TwitchEdit-Delete} found root node, observing for changes', rootNode)
 
 //observe the childList and subtrees
-observer.observe(editRoot, {
+rootObserver.observe(rootNode, {
   childList: true,
   subtree: true
 });
+
+//reaction node to watch changes in
+var reactNode = document.getElementsByClassName('ReactModalPortal')[0];
+console.log('{TwitchEdit-Delete} found reaction portal, observing for changes', reactNode);
+
+//observe the childlist and subtrees
+reactObserver.observe(reactNode, {
+  childList: true,
+  subtree: true
+})
 
 //loads a file into a variable under .contents
 function loadFile(fileSource, element) {

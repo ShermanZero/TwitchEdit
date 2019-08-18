@@ -27,7 +27,7 @@ var observer = new MutationObserver(function(mutations) {
           continue;
         } else
         //if the node has my class, ignore it
-        if(node.hasAttribute('class') && node.getAttribute('class') == 'twitchedit') {
+        if(node.hasAttribute('class') && node.getAttribute('class').includes('twitchedit')) {
           continue;
         } else
         //if all other tests pass, but if the node is not exactly what we are looking for, continue
