@@ -8,7 +8,7 @@ var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/s
 var linkReplace = "{link}";
 var sizeReplace = "{size}";
 
-var clipHeader, clipLink, insertionPoint, clipButtonHTML = {contents: ""};
+var clipHeader, clipLink, insertionPoint, editButtonHTML = {contents: ""};
 
 //mutation observer watching for added nodes
 var observer = new MutationObserver(function(mutations) {
@@ -95,16 +95,16 @@ function modifyClip() {
 
   //replace <link> with the actual link
   console.log('{TwitchEdit-Edit} --setting link');
-  clipButtonHTML.contents = clipButtonHTML.contents.replace(linkReplace, clipLink);
+  editButtonHTML.contents = editButtonHTML.contents.replace(linkReplace, clipLink);
 
   //set the width and height of the icon
   console.log('{TwitchEdit-Edit} --setting icon size');
-  clipButtonHTML.contents = clipButtonHTML.contents.replace(sizeReplace, iconSize);
-  clipButtonHTML.contents = clipButtonHTML.contents.replace(sizeReplace, iconSize);
+  editButtonHTML.contents = editButtonHTML.contents.replace(sizeReplace, iconSize);
+  editButtonHTML.contents = editButtonHTML.contents.replace(sizeReplace, iconSize);
 
   //inject the HTML after the insertion point
   console.log('{TwitchEdit-Edit} --injecting HTML');
-  insertionPoint.insertAdjacentHTML('afterend', clipButtonHTML.contents);
+  insertionPoint.insertAdjacentHTML('afterend', editButtonHTML.contents);
 
   //display the injection in the console
   console.log('{TwitchEdit-Edit} injected: ', editRoot.getElementsByClassName('twitchedit-clip')[0]);
@@ -130,9 +130,12 @@ function loadFile(fileSource, element) {
     response.text().then(function(text) {
       //set the contents and append copyright to before and after
       element.contents = (copyright + text + copyright);
+
+      //log the file was loaded
+      console.log('{TwitchEdit-Edit} found and loaded HTML:', element.contents);
     })
   });
 }
 
 //load the editButton.html
-loadFile('/html/clip/clipButton.html', clipButtonHTML);
+loadFile('/html/edit/editButton.html', editButtonHTML);

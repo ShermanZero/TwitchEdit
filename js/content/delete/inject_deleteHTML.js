@@ -1,6 +1,6 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
-console.log('{TwitchEdit-Edit} Content script loaded and started');
+console.log('{TwitchEdit-Delete} Content script loaded and started');
 
 var iconSize = 16;
 var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/shermanzero -->";
@@ -8,7 +8,7 @@ var copyright = "<!-- TwitchEdit COPYRIGHT (C) 2019 KIERAN SHERMAN | twitch.tv/s
 var linkReplace = "{link}";
 var sizeReplace = "{size}";
 
-var clipHeader, clipLink, insertionPoint, clipButtonHTML = {contents: ""};
+var clipHeader, clipLink, insertionPoint, deleteButtonHTML = {contents: ""};
 
 //mutation observer watching for added nodes
 var observer = new MutationObserver(function(mutations) {
@@ -50,35 +50,16 @@ var observer = new MutationObserver(function(mutations) {
           clipLinkContainer = node.getElementsByClassName('tw-inline-flex tw-tooltip-wrapper');
           console.log("{TwitchEdit-Delete} found link container:", clipLinkContainer);
 
+          var twitchDeleteButton = clipLinkContainer[1];
+          twitchDeleteButton.style.visibility = 'hidden';
+
           //marks the insertion point
-          insertionPoint = clipLinkContainer[clipLinkContainer.length - 2];
+          insertionPoint = clipLinkContainer[1];
           console.log("{TwitchEdit-Delete} marked insertion point:", insertionPoint);
 
-          //iterate through container to find the link
-          for(var j = 0; j < clipLinkContainer.length; j++) {
-            var child = clipLinkContainer[j];
-            console.log('{TwitchEdit-Delete} searching for link, testing (' + (j+1) + '/' + clipLinkContainer.length + '):', child);
-
-            //if there exists a child with an 'a' tag, get the href value
-            if(child.getElementsByTagName('a')[0] != null) {
-              clipLink = child.children[0].getAttribute('href');
-              console.log('{TwitchEdit-Delete} found full link:', clipLink);
-
-              //display how many searches we do not need to do anymore since we have found the link
-              console.log("{TwitchEdit-Delete} discarded " + (clipLinkContainer.length - (j+1)) + " search(es)");
-
-              //cut the end of the link starting at '?'
-              clipLink = clipLink.substring(0, clipLink.indexOf('?'))+"/edit";
-              console.log("{TwitchEdit-Delete} modified clip link:", clipLink);
-
-              //found the link, so break out of the loop
-              break;
-            }
-          }
-
-          //modify the clip and finish (no need to keep iterating through other additions)
-          modifyClip();
-          break;
+          //inject the delete button
+          injectDelete();
+          return;
 
         //if the node did not match our parameters
         } else {
@@ -90,21 +71,21 @@ var observer = new MutationObserver(function(mutations) {
 });
 
 //modify the clips to display new data
-function modifyClip() {
+function injectDelete() {
   console.log('{TwitchEdit-Delete} beginning HTML injection');
 
   //replace <link> with the actual link
   console.log('{TwitchEdit-Delete} --setting link');
-  clipButtonHTML.contents = clipButtonHTML.contents.replace(linkReplace, clipLink);
+  deleteButtonHTML.contents = deleteButtonHTML.contents.replace(linkReplace, clipLink);
 
   //set the width and height of the icon
   console.log('{TwitchEdit-Delete} --setting icon size');
-  clipButtonHTML.contents = clipButtonHTML.contents.replace(sizeReplace, iconSize);
-  clipButtonHTML.contents = clipButtonHTML.contents.replace(sizeReplace, iconSize);
+  deleteButtonHTML.contents = deleteButtonHTML.contents.replace(sizeReplace, iconSize);
+  deleteButtonHTML.contents = deleteButtonHTML.contents.replace(sizeReplace, iconSize);
 
   //inject the HTML after the insertion point
   console.log('{TwitchEdit-Delete} --injecting HTML');
-  insertionPoint.insertAdjacentHTML('afterend', clipButtonHTML.contents);
+  insertionPoint.insertAdjacentHTML('afterend', deleteButtonHTML.contents);
 
   //display the injection in the console
   console.log('{TwitchEdit-Delete} injected: ', editRoot.getElementsByClassName('twitchedit-delete')[0]);
@@ -130,9 +111,12 @@ function loadFile(fileSource, element) {
     response.text().then(function(text) {
       //set the contents and append copyright to before and after
       element.contents = (copyright + text + copyright);
+
+      //log the file was loaded
+      console.log('{TwitchEdit-Delete} found and loaded HTML:', element.contents);
     })
   });
 }
 
 //load the editButton.html
-loadFile('/html/delete/deleteButton.html', clipButtonHTML);
+loadFile('/html/delete/deleteButton.html', deleteButtonHTML);

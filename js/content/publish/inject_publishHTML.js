@@ -115,6 +115,9 @@ function loadFile(fileSource, element) {
     response.text().then(function(text) {
       //set the contents and append copyright to before and after
       element.contents = (copyright + text + copyright);
+
+      //log the file was loaded
+      console.log('{TwitchEdit-Publish} found and loaded HTML:', element.contents);
     })
   });
 }

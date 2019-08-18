@@ -14,7 +14,7 @@
     "html/edit/editButton.html",
     "html/publish/publishButton.html",
     "html/clip/clipButton.html",
-    "html/deltete/deleteButton.html"
+    "html/delete/deleteButton.html"
   ],
 
   "content_scripts": [
