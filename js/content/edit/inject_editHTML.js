@@ -107,7 +107,7 @@ function modifyClip() {
   insertionPoint.insertAdjacentHTML('afterend', clipButtonHTML.contents);
 
   //display the injection in the console
-  console.log('{TwitchEdit-Edit} injected: ', editRoot.getElementsByClassName('twitchedit')[0]);
+  console.log('{TwitchEdit-Edit} injected: ', editRoot.getElementsByClassName('twitchedit-clip')[0]);
 
   //successfully injected!
   console.log('{TwitchEdit-Edit} !!- HTML injection COMPLETED | You can now click on the clip icon to clip without redirection -!!');

@@ -71,7 +71,7 @@ function modifyViewer() {
   insertionPoint.insertAdjacentHTML('afterend', clipButtonHTML.contents);
 
   //display the injection in the console
-  console.log('{TwitchEdit-Clip} injected: ', editRoot.getElementsByClassName('twitchedit')[0]);
+  console.log('{TwitchEdit-Clip} injected: ', editRoot.getElementsByClassName('twitchedit-clip')[0]);
 
   //successfully injected!
   console.log('{TwitchEdit-Clip} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');

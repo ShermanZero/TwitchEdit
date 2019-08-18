@@ -91,6 +91,9 @@ function modifyReturn() {
   //insert the submit button after the other submit button
   injectionPoint.insertAdjacentHTML('beforebegin', submitButtonHTML.contents);
 
+  //display the injection in the console
+  console.log('{TwitchEdit-Publish} injected: ', editRoot.getElementsByClassName('twitchedit-publish')[0]);
+
   //successfully injected!
   console.log('{TwitchEdit-Publish} !!- HTML injection COMPLETED | You can now click on the edit icon to go to the clip editor -!!');
 }
