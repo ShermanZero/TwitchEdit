@@ -19,7 +19,8 @@
 
   "content_scripts": [
     {
-      "matches": [
+      "matches":
+      [
         "*://*.twitch.tv/*/manager/clips*"
       ],
       "js": [
@@ -30,7 +31,8 @@
       "run_at": "document_end"
     },
     {
-      "matches": [
+      "matches":
+      [
         "*://*.twitch.tv/*"
       ],
       "js": [
