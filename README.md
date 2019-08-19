@@ -1,7 +1,7 @@
 # TwitchEdit
-### v1.4.0
+### v1.5.0
 
-![TwitchEdit](resources/popup.jpg)
+![TwitchEdit](resources/misc/images/MarqueePromo.jpg)
 
 After getting tired of spending the extra 10 seconds to navigate to my clip page directly, and then modify the URL by typing /edit at the end of it, I decided to write this little Chrome Extension which automates that process for you.  Once installed, any time you visit your clips page and click on a clip, you will see a brand new "Edit" icon which will take you directly to the clip in a **NEW TAB** (thank God) and allow you to edit it.
 
@@ -12,6 +12,11 @@ After getting tired of spending the extra 10 seconds to navigate to my clip page
 If you appreciate what I've done, please feel free to head over to my [Twitch channel](https://twitch.tv/ShermanZero) and drop a follow to show your support and appreciation!  I play a lot of Overwatch, and promote PMA!
 
 # Changelog
+
+**v1.5.0 (8/18/19)**
+- Replaced the clip delete icon with custom delete icon which automates the clip deletion process
+- Started adding functionality for a new clip feature
+- Removes the "Watch on Clips Page" button
 
 **v1.4.0 (8/16/19)**
 - Changed the way the HTTP request is made to open a new tab to edit a clip
