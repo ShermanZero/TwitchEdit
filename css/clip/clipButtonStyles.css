@@ -2,7 +2,7 @@
 
 .twitchedit-clip {
   margin-left: 4px;
-  margin-top: 4px;
+  margin-top: 3px;
   margin-right: 4px;
 }
 
@@ -13,6 +13,6 @@
   background: transparent
 }
 
-.twitchedit_clip_button:hover {
-  color: rgba(165, 149, 210);
+img:hover {
+  filter: brightness(0) saturate(100%) invert(82%) sepia(24%) saturate(4168%) hue-rotate(198deg) brightness(89%) contrast(83%);
 }

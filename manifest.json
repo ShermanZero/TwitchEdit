@@ -15,7 +15,9 @@
     "html/edit/editButton.html",
     "html/publish/publishButton.html",
     "html/clip/clipButton.html",
-    "html/delete/deleteButton.html"
+    "html/delete/deleteButton.html",
+
+    "icons/clip/svg/clip_128.svg"
   ],
 
   "content_scripts": [
