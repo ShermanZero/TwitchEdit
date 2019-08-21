@@ -17,7 +17,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   }
 });
 
-
+//listen for the command to close a tab
 chrome.runtime.onMessage.addListener (
   function(request, sender, sendResponse) {
     //if we receive the command to closeTab
