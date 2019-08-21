@@ -1,5 +1,5 @@
 # TwitchEdit
-### v1.5.0
+### v1.6.0
 
 ![TwitchEdit](resources/misc/images/MarqueePromo.jpg)
 
@@ -12,6 +12,9 @@ After getting tired of spending the extra 10 seconds to navigate to my clip page
 If you appreciate what I've done, please feel free to head over to my [Twitch channel](https://twitch.tv/ShermanZero) and drop a follow to show your support and appreciation!  I play a lot of Overwatch, and promote PMA!
 
 # Changelog
+
+**v1.6.0 (08/21/19)**
+- Adds a new clip button next to the existing clip button on streams which will do the exact same thing as the standard clip button, but automatically close the edit tab that opens, allowing you to return to the stream without any effort
 
 **v1.5.0 (8/18/19)**
 - Replaced the clip delete icon with custom delete icon which automates the clip deletion process
@@ -33,6 +36,6 @@ If you appreciate what I've done, please feel free to head over to my [Twitch ch
 - Took different screenshots
 
 **v1.0 (08/13/19)**
-- *Initial commit*
+- Initial commit
 
 *This is technically open-source since I have made the code publicly available here to you all.  I could have simply created a repository with just a README, but decided to let you guys see what I've done.  You are welcome to clone, fork, download, or whatever this project for yourself, all I ask is that you leave my credits in the files wherever they appear.*
