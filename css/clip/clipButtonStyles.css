@@ -1,14 +1,14 @@
 /* TWITCHEDIT COPYRIGHT © 2019 KIERAN (SHERMANZERO) SHERMAN */
 
 .twitchedit-clip {
-  margin-left: 4px;
-  margin-top: 3px;
-  margin-right: 4px;
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-right: 5px;
 }
 
 .twitchedit_clip_button {
-  width: 22px;
-  height: 22px;
+  width: 21px;
+  height: 21px;
   outline: none;
   background: transparent
 }
